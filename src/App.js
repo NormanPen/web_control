@@ -1,5 +1,37 @@
+import React, {useState} from 'react';
+
+//import BackwardControl from './components/BackwardControl';
+//import SpeedControl from './components/SpeedControl';
+//import SpeedControlComponent from './components/SpeedControlComponent';
+import Control from './components/Control';
+
+const {default: Webcam} = require('./components/Webcam');
+
 function App() {
-    return <h1 className='text-3xl font-bold underline'>Hello world!</h1>;
+    const [status, setStatus] = useState('');
+
+    const handleAction = async (action) => {
+        try {
+            const response = await fetch(
+                `http://moontruck.local:5000/${action}`,
+                {
+                    method: 'GET',
+                },
+            );
+            const data = await response.json();
+            setStatus(data.message);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    return (
+        <div className='App'>
+            <Webcam />
+
+            <Control handleAction={handleAction} />
+        </div>
+    );
 }
 
 export default App;
