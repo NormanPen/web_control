@@ -51,17 +51,17 @@ function Control({handleAction}) {
                 Backward Right
             </button>
             <button
-                onClick={() => handleAction('sidestepright')}
-                className='mr-3'
-            >
-                Sidestep Right
-            </button>
-            <button className='mr-3'>Platzhalter</button>
-            <button
                 onClick={() => handleAction('sidestepleft')}
                 className='mr-3'
             >
                 Sidestep Left
+            </button>
+            <button className='mr-3'>Platzhalter</button>
+            <button
+                onClick={() => handleAction('sidestepright')}
+                className='mr-3'
+            >
+                Sidestep Right
             </button>
         </div>
     );
