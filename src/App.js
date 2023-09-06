@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 //import SpeedControlComponent from './components/SpeedControlComponent';
 import Control from './components/Control';
 
+
 const {default: Webcam} = require('./components/Webcam');
 
 function App() {
@@ -23,10 +24,10 @@ function App() {
     };
 
     return (
-        <div className='App'>
+        <div className='App max-w-sm mx-auto mt-5'>
             <Webcam />
-
             <Control handleAction={handleAction} />
+
         </div>
     );
 }
