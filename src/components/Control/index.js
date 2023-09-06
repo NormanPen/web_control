@@ -1,6 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function Control({handleAction}) {
+    const [isAutoMode, setIsAutoMode] = useState(false);
+
+    const toggleAutoMode = async () => {
+        try {
+            if (isAutoMode) {
+                // Wenn im Auto-Modus, sende den Befehl zum Stoppen
+                await handleAction('stopautonom');
+            } else {
+                // Wenn nicht im Auto-Modus, sende den Befehl zum Starten
+                await handleAction('startautonom');
+            }
+            // Aktualisiere den Zustand des Auto-Modus
+            setIsAutoMode(!isAutoMode);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <div className='Control grid grid-cols-3 gap-4'>
             <button
@@ -56,7 +74,9 @@ function Control({handleAction}) {
             >
                 Sidestep Left
             </button>
-            <button className='mr-3'>Platzhalter</button>
+            <button onClick={toggleAutoMode} className='mr-3'>
+                {isAutoMode ? 'Stop Auto mode' : 'Start Auto mode'}
+            </button>
             <button
                 onClick={() => handleAction('sidestepright')}
                 className='mr-3'

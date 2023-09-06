@@ -12,12 +12,9 @@ function App() {
 
     const handleAction = async (action) => {
         try {
-            const response = await fetch(
-                `http://moontruck.local:5000/${action}`,
-                {
-                    method: 'GET',
-                },
-            );
+            const response = await fetch(`http://192.168.4.1:5000/${action}`, {
+                method: 'GET',
+            });
             const data = await response.json();
             setStatus(data.message);
         } catch (error) {
